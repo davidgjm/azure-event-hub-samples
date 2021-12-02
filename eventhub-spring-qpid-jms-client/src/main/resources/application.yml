@@ -5,7 +5,7 @@ azure:
     shared-access-key-name: ${SAS_POLICY_NAME}
     shared-access-key: ${SAS_POLICY_KEY}
     tracing: noop
-    topic: ${EH_TOPIC:my-topic}/ConsumerGroups/$Default/Partitions/0
+    topic: ${EH_TOPIC:my-topic}
 io:
   opentracing:
     contrib:
@@ -16,10 +16,10 @@ spring:
   jms:
     pub-sub-domain: true
     listener:
-      auto-startup: true
+      auto-startup: false
       acknowledge-mode: AUTO
       concurrency: 2
 
     template:
-      default-destination: ${EH_TOPIC:my-topic}/ConsumerGroups/$Default/Partitions/0
+      default-destination: ${EH_TOPIC:my-topic}
       delivery-delay: PT30S

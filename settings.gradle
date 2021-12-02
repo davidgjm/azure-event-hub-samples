@@ -13,4 +13,5 @@ include 'eventhub-azure-sdk-spring-kafka'
 include 'eventhub-azure-sdk-spring-cloud-amqp'
 include 'eventhub-azure-sdk-spring-jms'
 include 'eventhub-spring-jms'
+include 'eventhub-spring-qpid-jms-client'
 
