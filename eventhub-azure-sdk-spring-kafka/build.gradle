@@ -1,0 +1,33 @@
+plugins {
+    id 'dev.java-conventions'
+    id 'org.springframework.boot' version "${springBootVersion}"
+
+}
+apply plugin: 'io.spring.dependency-management'
+
+dependencyManagement {
+    imports {
+        mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+
+        mavenBom "com.azure.spring:azure-spring-boot-bom:${azureSpringBootVersion}"
+        mavenBom "com.azure.spring:azure-spring-cloud-dependencies:${azureSpringCloudVersion}"
+    }
+    dependencies {
+        dependency "com.azure:azure-identity:${azureIdentitySdkVersion}"
+        dependency "com.azure:azure-messaging-eventhubs:${azureMessagingEventHubSdkVersion}"
+    }
+}
+
+dependencies {
+
+    //Spring boot
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    //Kafka
+    implementation 'com.azure.spring:azure-spring-cloud-starter-eventhubs-kafka'
+//    implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka'
+//    implementation 'org.springframework.kafka:spring-kafka'
+//    testImplementation 'org.springframework.kafka:spring-kafka-test'
+
+}

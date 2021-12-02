@@ -1,0 +1,21 @@
+azure:
+  credential:
+    client-id: ${CLIENT_ID}
+    client-secret: ${CLIENT_SECRET}
+    tenant-id: ${TENANT_ID}
+spring:
+  cloud:
+    azure:
+      subscription-id: ${SUBSCRIPTION_ID}
+      resource-group: ${RESOURCE_GROUP}
+      eventhub:
+        namespace: ${EH_NAMESPACE}
+    stream:
+      function:
+        definition: consume;supply
+      bindings:
+        consume-in-0:
+          destination: ${EH_TOPIC:my-topic}
+          group: $Default
+        supply-out-0:
+          destination: ${EH_TOPIC:my-topic}

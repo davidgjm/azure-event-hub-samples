@@ -1,0 +1,24 @@
+azure:
+  eventhub:
+    host-name: ${EH_HOST_NAME}
+    port: ${EH_AMQP_PORT:5671}
+    shared-access-key-name: ${SAS_POLICY_NAME}
+    shared-access-key: ${SAS_POLICY_KEY}
+    tracing: noop
+io:
+  opentracing:
+    contrib:
+      jms:
+        spring:
+          traceInLog: true
+spring:
+  jms:
+    pub-sub-domain: true
+    listener:
+      auto-startup: false
+      acknowledge-mode: AUTO
+      concurrency: 2
+
+    template:
+      default-destination: ${EH_TOPIC:my-topic}
+      delivery-delay: PT30S

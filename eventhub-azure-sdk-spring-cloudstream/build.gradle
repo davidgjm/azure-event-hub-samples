@@ -1,0 +1,45 @@
+plugins {
+    id 'dev.java-conventions'
+    id 'org.springframework.boot' version "${springBootVersion}"
+
+}
+apply plugin: 'io.spring.dependency-management'
+
+dependencyManagement {
+    imports {
+        mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+
+        mavenBom "com.azure.spring:azure-spring-boot-bom:${azureSpringBootVersion}"
+        mavenBom "com.azure.spring:azure-spring-cloud-dependencies:${azureSpringCloudVersion}"
+    }
+    dependencies {
+        dependency "com.azure:azure-identity:${azureIdentitySdkVersion}"
+        dependency "com.microsoft.azure:msal4j:${azureMsalVersion}"
+        dependency "com.azure:azure-messaging-eventhubs:${azureMessagingEventHubSdkVersion}"
+    }
+}
+
+dependencies {
+
+    //azure
+//    implementation 'com.azure:azure-identity'
+//    implementation 'com.azure:azure-messaging-eventhubs'
+//    implementation 'com.azure.spring:azure-spring-cloud-starter-eventhubs'
+
+    implementation 'com.microsoft.azure:msal4j'
+    implementation 'com.azure.spring:azure-spring-cloud-stream-binder-eventhubs'
+
+
+    implementation 'org.apache.commons:commons-lang3'
+
+    //Spring boot common
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-stream'
+
+    implementation 'org.springframework.boot:spring-boot-starter-json'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+
+}

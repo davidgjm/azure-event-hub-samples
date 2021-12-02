@@ -1,0 +1,33 @@
+plugins {
+    id 'dev.java-conventions'
+    id 'org.springframework.boot' version "${springBootVersion}"
+
+}
+apply plugin: 'io.spring.dependency-management'
+
+dependencyManagement {
+    imports {
+        mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+
+//        mavenBom "com.azure.spring:azure-spring-boot-bom:${azureSpringBootVersion}"
+//        mavenBom "com.azure.spring:azure-spring-cloud-dependencies:${azureSpringCloudVersion}"
+    }
+    dependencies {
+        dependency "io.opentracing.contrib:opentracing-spring-jaeger-cloud-starter:${springJaegerVersion}"
+        dependency "org.apache.qpid:qpid-jms-client:1.3.0"
+    }
+}
+
+dependencies {
+    implementation 'org.apache.qpid:qpid-jms-client'
+
+    implementation "jakarta.jms:jakarta.jms-api"
+    implementation "org.springframework:spring-jms"
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+//    implementation 'com.azure.spring:azure-spring-boot-starter-servicebus-jms'
+
+    //tracing
+//    implementation 'io.opentracing.contrib:opentracing-spring-jaeger-cloud-starter'
+}

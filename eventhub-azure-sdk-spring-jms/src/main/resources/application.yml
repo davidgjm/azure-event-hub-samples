@@ -1,0 +1,29 @@
+azure:
+  credential:
+    client-id: ${CLIENT_ID}
+    client-secret: ${CLIENT_SECRET}
+    tenant-id: ${TENANT_ID}
+spring:
+  cloud:
+    azure:
+      resource-group: ${RESOURCE_GROUP}
+      eventhub:
+        namespace: ${EH_NAMESPACE}
+    stream:
+      bindings:
+        consume-in-0:
+          destination: ${EH_TOPIC:my-topic}
+          group: $Default
+        supply-out-0:
+          destination: ${EH_TOPIC:my-topic}
+
+      eventhub:
+        bindings:
+          consume-in-0:
+            consumer:
+              checkpoint-mode: MANUAL
+      function:
+        definition: consume;supply;
+      poller:
+        initial-delay: 0
+        fixed-delay: 1000
