@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Sinks;
 
@@ -21,7 +21,7 @@ public class EventProducerController {
     private Sinks.Many<Message<String>> many;
 
     @PostMapping("/messages")
-    public ResponseEntity<String> sendMessage(@RequestParam String message) {
+    public ResponseEntity<String> sendMessage(@RequestBody String message) {
         LOGGER.info("Going to add message {} to sendMessage.", message);
         many.emitNext(MessageBuilder.withPayload(message).build(), Sinks.EmitFailureHandler.FAIL_FAST);
         return ResponseEntity.ok(message);
