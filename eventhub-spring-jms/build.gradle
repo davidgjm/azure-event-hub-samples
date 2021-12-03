@@ -24,9 +24,9 @@ dependencies {
 
     implementation "jakarta.jms:jakarta.jms-api"
     implementation "org.springframework:spring-jms"
-    implementation 'org.springframework.boot:spring-boot-starter-web'
 
-//    implementation 'com.azure.spring:azure-spring-boot-starter-servicebus-jms'
+    implementation 'org.springframework.boot:spring-boot-starter-json'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
     //tracing
 //    implementation 'io.opentracing.contrib:opentracing-spring-jaeger-cloud-starter'

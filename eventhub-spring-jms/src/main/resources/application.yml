@@ -18,8 +18,8 @@ spring:
     listener:
       auto-startup: true
       acknowledge-mode: AUTO
-      concurrency: 2
+      concurrency: 1
 
     template:
-      default-destination: ${EH_TOPIC:my-topic}/ConsumerGroups/$Default/Partitions/0
+      default-destination: ${EH_TOPIC:my-topic}
       delivery-delay: PT30S

@@ -13,7 +13,7 @@ public class EventHubProperties {
     private String tracing;
 
     public String buildUrl() {
-        return String.format("amqps://%s:%d/?jms.username=%s&jms.password=%s&jms.tracing=%s",
+        return String.format("amqps://%s:%d/?jms.username=%s&jms.password=%s&jms.tracing=%s&amqp.idleTimeout=120000&amqp.traceFrames=true",
                 hostName,
                 port,
                 sharedAccessKeyName,
