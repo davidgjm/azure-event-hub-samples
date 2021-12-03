@@ -1,0 +1,55 @@
+= asciidoc formatting cheat sheet
+
+``
+This is a test for using asciidoc format
+``
+
+Formatting demo
+
+== Heading 1
+=== Heading 2
+==== Heading 3
+===== Heading 4
+====== Heading 5
+
+
+*This is bold text*
+
+_This is italic text._
+
+[.line-through]#Strike through text#
+
+#Highlight text#
+
+===== Unordered list
+* List item 1
+** sub list item 1
+*** sub list item 1.1
+* List item 2
+* List item 3
+
+
+===== Ordered list
+. Step 1
+. Step 2
+.. Step 2a
+.. Step 2b
+. Step 3
+
+
+===== Checklist
+- [*] checked
+- [x] also checked
+- [ ] not checked
+-     normal list item
+
+[[app-listing]]
+[source,ruby]
+.app.rb
+----
+require 'sinatra'
+
+get '/hi' do
+  "Hello World!"
+end
+----
