@@ -1,0 +1,38 @@
+amqp:
+  broker:
+    host-name: ${BROKER_HOST_NAME}
+    port: ${BROKER_PORT:5671}
+    tls-enabled: true
+    broker-type: AZURE_EVENT_HUB
+    username: ${AMQP_USER}
+    password: ${AMQP_PASSWORD}
+    tracing: noop
+    topic: ${AMQP_TOPIC:my-topic}
+#    properties:
+#      consumer:
+#        group: $Default
+#        partition: 0
+
+io:
+  opentracing:
+    contrib:
+      jms:
+        spring:
+          traceInLog: true
+spring:
+  jms:
+    pub-sub-domain: true
+    listener:
+      auto-startup: false
+      acknowledge-mode: AUTO
+      concurrency: 2
+
+    template:
+      default-destination: ${AMQP_TOPIC:my-topic}
+      delivery-delay: PT30S
+
+
+
+logging:
+  level:
+    org.apache.qpid.jms: DEBUG

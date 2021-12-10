@@ -1,0 +1,10 @@
+amqp:
+  broker:
+    host-name: localhost
+    port: 5672
+    tls-enabled: false
+    broker-type: ARTEMIS
+    username: guest
+    password: guest
+    tracing: noop
+    topic: ${AMQP_TOPIC:data-sandbox}

@@ -1,0 +1,49 @@
+= Multiple AMQP Brokers support
+
+This project attempts to support sending/receiving messages to/from ActiveMQ Artemis
+and Azure Event Hub by only changing spring profiles.
+
+
+== Configuration
+
+The AMQP broker connection information is defined in the following section. You can either edit the configuration file or pass environment variables at runtime to reflect your real environment.
+
+.application.yml
+[source, yaml]
+----
+amqp:
+  broker:
+    host-name: ${BROKER_HOST_NAME}
+    port: ${BROKER_PORT:5671}
+    tls-enabled: true
+    broker-type: AZURE_EVENT_HUB
+    username: ${AMQP_USER}
+    password: ${AMQP_PASSWORD}
+    tracing: noop
+    topic: ${AMQP_TOPIC:my-topic}
+----
+
+== Running the application
+
+=== Switching AMQP broker
+
+Just pass the corresponding Spring profile for your application configuration by either using command line argument or environment variables
+
+.Command line argument
+[source, bash]
+----
+java -jar myApp.jar --spring.profiles.active=eventhub
+----
+
+.Environment variable
+[source, bash]
+----
+export SPRING_PROFILES_ACTIVE=artemis
+----
+
+
+== Issues/To-do
+
+=== Work in progress /To do items
+* [ ] Message consumer not working correctly for Azure Event Hub
+* [ ] Message consumer for Azure Event Hub only supports single partition.

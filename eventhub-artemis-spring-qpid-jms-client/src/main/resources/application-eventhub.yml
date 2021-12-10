@@ -1,0 +1,15 @@
+amqp:
+  broker:
+    host-name: ${BROKER_HOST_NAME}
+    port: ${BROKER_PORT:5671}
+    tls-enabled: true
+    broker-type: AZURE_EVENT_HUB
+    username: ${AMQP_USER}
+    password: ${AMQP_PASSWORD}
+    tracing: noop
+    topic: ${AMQP_TOPIC:data-sandbox}
+    properties:
+      consumer:
+        group: sandbox-consumers
+        partition: 0
+
